@@ -2,51 +2,51 @@
 
 
 template<class T>
-class Node
-{
-public:
-    T value;
-    Node<T>* next;
-
-
-    Node()
-    {
-        next = nullptr;
-    }
-
-
-    Node(T _value) : Node()
-    {
-        value = _value;
-    }
-
-
-    Node(Node* _next)
-    {
-        next = _next;
-    }
-
-
-    Node(T _value, Node* _next)
-    {
-        value = _value;
-        next = _next;
-    }
-};
-
-
-template<class T>
 class List
 {
-private:
-    Node<T>* first;
-    Node<T>* last;
-    unsigned int _length;
-
-
-    Node<T>* get_recursive(Node<T>* current_element, unsigned int n)
+    template<class TT>
+    class Node
     {
-        if(n == 0)
+    public:
+        TT value;
+        Node<TT>* next;
+
+
+        Node()
+        {
+            next = nullptr;
+        }
+
+
+        Node(TT _value) : Node()
+        {
+            value = _value;
+        }
+
+
+        Node(Node* _next)
+        {
+            next = _next;
+        }
+
+
+        Node(TT _value, Node* _next)
+        {
+            value = _value;
+            next = _next;
+        }
+    };
+
+
+    private:
+        Node<T>* first;
+        Node<T>* last;
+        unsigned int _length;
+
+
+        Node<T>* get_recursive(Node<T>* current_element, unsigned int n)
+        {
+            if(n == 0)
         {
             return current_element;
         }

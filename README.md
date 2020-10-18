@@ -17,13 +17,15 @@ My implementation of lists
 ```list.length();```
 
 ## There is also a head and a tail
-```list.head();
+```
+list.head();
 
 list.tail();
 ```
 
 # Example:
-```List<int> list;
+```
+List<int> list;
 
 for(int i = 0; i < 10; i++)
 {

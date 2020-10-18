@@ -139,24 +139,33 @@ public:
 
     T pop(unsigned int index)
     {
-        Node<T>* buf = get_recursive(first, index);
+        if(index > _length || _length == 0) throw "Can't pop non-existent element";
 
-        if(!index)
+        if(_length > 1)
         {
-            first = first -> next;
-        }
-        else
-        {
-            get_recursive(first, index - 1) -> next = get_recursive(first, index + 1);
-        }
+            Node<T>* buf = get_recursive(first, index);
 
-        T result = buf -> value;
+            if(!index)
+            {
+                first = first -> next;
+            }
+            else
+            {
+                get_recursive(first, index - 1) -> next = get_recursive(first, index + 1);
+            }
 
-        delete buf;
+            T result = buf -> value;
+
+            delete buf;
+
+            _length--;
+
+            return result;
+        }
 
         _length--;
 
-        return result;
+        return first -> value;
     }
 
 

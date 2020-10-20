@@ -10,6 +10,9 @@ My implementation of lists
 ## Pop first element:
 ```list.pop(0);```
 
+## Insert element:
+```list.insert(12, 1);```
+
 ## Clear list:
 ```list.clear();```
 

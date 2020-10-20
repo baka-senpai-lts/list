@@ -4,6 +4,7 @@
 template<class T>
 class List
 {
+    private:
     template<class TT>
     class Node
     {
@@ -38,15 +39,14 @@ class List
     };
 
 
-    private:
-        Node<T>* first;
-        Node<T>* last;
-        unsigned int _length;
+    Node<T>* first;
+    Node<T>* last;
+    unsigned int _length;
 
 
-        Node<T>* get_recursive(Node<T>* current_element, unsigned int n)
-        {
-            if(n == 0)
+    Node<T>* get_recursive(Node<T>* current_element, unsigned int n)
+    {
+        if(n == 0)
         {
             return current_element;
         }
@@ -137,9 +137,30 @@ public:
     }
 
 
+    void insert(T value, int index)
+    {
+        if(index > 0 && index < _length)
+        {
+            Node<T>* buf = get_recursive(first, index - 1);
+            buf -> next = new Node<T>(value, buf -> next);
+        }
+        else if(index == 0)
+        {
+            Node<T>* buf = first;
+            first = new Node<T>(value, first);
+        }
+        else
+        {
+            throw "Out of bounds";
+        }
+
+        _length++;
+    }
+
+
     T pop(unsigned int index)
     {
-        if(index > _length || _length == 0) throw "Can't pop non-existent element";
+        if(index < 0 || index > _length || _length == 0) throw "Can't pop non-existent element";
 
         if(_length > 1)
         {
@@ -177,7 +198,7 @@ public:
 
     T& operator[](unsigned int index)
     {
-        if(index < _length)
+        if(index >= 0 && index < _length)
         {
             return get_recursive(first, index) -> value;
         }
